@@ -30,7 +30,7 @@ namespace PasswordManager.Components
         {
             try
             {
-                if (FieldValidation(Title) == false || FieldValidation(Password) == false) return;
+                if (FieldValidation(Title) == false || FieldValidation(Password) == false || FieldValidation(Login) == false) return;
 
                 DataBlock dataBlock = new DataBlock(Title.Text, Login.Text, Password.Text, Additional.Text);
                 MainPage.MainPageInstance?.DataBlockStackPanel.Children.Add(dataBlock);
@@ -58,7 +58,7 @@ namespace PasswordManager.Components
             }
             else
             {
-                textBox.BorderBrush = null;
+                textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#757575"));
                 return true;
             }
         }

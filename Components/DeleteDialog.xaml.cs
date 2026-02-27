@@ -20,11 +20,11 @@ namespace PasswordManager.Components
 {
     public partial class DeleteDialog : UserControl
     {
-        private DataBlock _dataBlock;
+        private DataBlock dataBlock;
         public DeleteDialog(DataBlock dataBlock)
         {
             InitializeComponent();
-            _dataBlock = dataBlock;
+            this.dataBlock = dataBlock;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -34,7 +34,7 @@ namespace PasswordManager.Components
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.MainPageInstance?.DataBlockStackPanel.Children.Remove(_dataBlock);
+            MainPage.MainPageInstance?.DataBlockStackPanel.Children.Remove(dataBlock);
             ModalService.HideModal();
             ToastService.Show("Block was deleted", Colors.Orange);
             DataSettings.SaveJson();

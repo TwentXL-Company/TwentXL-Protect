@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         Background="{DynamicResource WindowBackground}"
         WindowStyle="None"
-        MinWidth="500"
-        MinHeight="500"
+        MinWidth="800"
+        MinHeight="550"
         WindowStartupLocation="CenterScreen"
         Icon="/Assets/Images/logo_protect_light.png"
         Title="TwentXL Protect" Height="650" Width="950">
@@ -19,7 +19,6 @@
                       CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
     <Border Background="{DynamicResource WindowBackground}" CornerRadius="0" BorderBrush="#979AAD" BorderThickness="1">
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
@@ -27,17 +26,9 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Style="{DynamicResource TitleBar}" MouseDown="Titlebar_MouseDown">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                <Label x:Name="PageName" Foreground="#ffffff" HorizontalAlignment="Center" Content="PageName" />
 
-                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
-                    <Image Style="{DynamicResource Logo}"/>
-                    <Label>Protect</Label>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="ButtonMinimize" Width="40" Style="{DynamicResource TitleBar_Button}" Click="ButtonMinimize_Click">
                         <Image Style="{DynamicResource Title_Minimize}" Width="20"/>
                     </Button>
@@ -51,29 +42,44 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,20,0">
-                    <Button Style="{DynamicResource Button_Link}" Margin="0,0,50,0" Click="Home_Click">Home</Button>
-                    <Button Style="{DynamicResource Button_Link}" Margin="0,0,50,0" Click="Settings_Click">Settings</Button>
-                    <Button Style="{DynamicResource Button_Link}" Margin="0,0,50,0" Click="FAQ_Click">FAQ</Button>
-                    <Button Style="{DynamicResource Button_Link}" Margin="0,0,50,0" Click="BackupAction_Click">
-                        <Button.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Create backup" Click="CreateBackup_Click"/>
-                                <MenuItem Header="Load backup" Click="LoadBackup_Click" />
-                            </ContextMenu>
-                        </Button.ContextMenu>
-                        Backup
-                    </Button>
-                </StackPanel>
-                <Grid Grid.Row="1" MaxWidth="800" x:Name="MainControl" Margin="0,20,0,0" />
+                <Grid Grid.Column="0" Background="{DynamicResource MainColor}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="70" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Style="{DynamicResource Logo}"/>
+                        <Label Foreground="#FFFFFF" FontSize="20">Protect</Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Button Style="{DynamicResource Button_Header}" Click="Home_Click">Home</Button>
+                        <Button Style="{DynamicResource Button_Header}" Click="Settings_Click">Settings</Button>
+                        <Button Style="{DynamicResource Button_Header}" Click="FAQ_Click">FAQ</Button>
+                        <Button Style="{DynamicResource Button_Header}" Click="BackupAction_Click">
+                            <Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Create backup" Click="CreateBackup_Click"/>
+                                    <MenuItem Header="Load backup" Click="LoadBackup_Click" />
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                            Backup
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Column="1" x:Name="MainControl" />
+
+                <comp:Toast x:Name="MyToast" Grid.Column="1" Panel.ZIndex="99" />
             </Grid>
 
-            <comp:Toast x:Name="MyToast" Grid.Row="1" Panel.ZIndex="99" />
             <Grid Grid.Row="1" x:Name="ModalDialog_Area" />
         </Grid>
     </Border>

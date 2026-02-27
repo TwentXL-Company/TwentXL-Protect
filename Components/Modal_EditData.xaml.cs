@@ -10,11 +10,13 @@ namespace PasswordManager.Components
 {
     public partial class Modal_EditData : UserControl
     {
+        private DataBlockContent? dataBlockContent = DataBlockContent.Instance;
         private DataBlock dataBlock;
-        public Modal_EditData(DataBlock _dataBlock, string title, string login, string password, string additional)
+
+        public Modal_EditData(DataBlock dataBlock, string title, string login, string password, string additional)
         {
             InitializeComponent();
-            dataBlock = _dataBlock;
+            this.dataBlock = dataBlock;
             Title.Text = title;
             Login.Text = login;
             Password.Text = password;
@@ -36,7 +38,7 @@ namespace PasswordManager.Components
         {
             try
             {
-                if (FieldValidation(Title) == false || FieldValidation(Password) == false) return;
+                if (FieldValidation(Title) == false || FieldValidation(Password) == false || FieldValidation(Login) == false) return;
                 string title = Title.Text;
                 string login = Login.Text;
                 string password = Password.Text;
@@ -60,22 +62,28 @@ namespace PasswordManager.Components
 
         private void FillAndCheckValue(string title, string login, string password, string additional)
         {
-            dataBlock.Title_Content.Content = title;
-            dataBlock.Login_Content.Text = login;
-            dataBlock.Password_Content.Text = password;
-            dataBlock.Additional_Content.Text = additional;
+            void Fill(dynamic x, Action<dynamic, string> setLogin)
+            {
+                x.Title_Content.Content = title;
+                setLogin(x, login);
+                x.Password_Content.Text = password;
+                x.Additional_Content.Text = additional;
+            }
 
-            if (string.IsNullOrEmpty(title)) dataBlock.Title_Content.Visibility = Visibility.Collapsed;
-            else dataBlock.Title_Content.Visibility = Visibility.Visible;
+            Fill(dataBlockContent, (x, v) => x.Login_Content.Text = v);
+            Fill(dataBlock, (x, v) => x.Login_Content.Content = v);
 
-            if (string.IsNullOrEmpty(login)) dataBlock.Login_Block.Visibility = Visibility.Collapsed;
-            else dataBlock.Login_Block.Visibility = Visibility.Visible;
+            if (string.IsNullOrEmpty(title)) dataBlockContent.Title_Content.Visibility = Visibility.Collapsed;
+            else dataBlockContent.Title_Content.Visibility = Visibility.Visible;
 
-            if (string.IsNullOrEmpty(password)) dataBlock.Password_Block.Visibility = Visibility.Collapsed;
-            else dataBlock.Password_Block.Visibility = Visibility.Visible;
+            if (string.IsNullOrEmpty(login)) dataBlockContent.Login_Block.Visibility = Visibility.Collapsed;
+            else dataBlockContent.Login_Block.Visibility = Visibility.Visible;
 
-            if (string.IsNullOrEmpty(additional)) dataBlock.Additional_Block.Visibility = Visibility.Collapsed;
-            else dataBlock.Additional_Block.Visibility = Visibility.Visible;
+            if (string.IsNullOrEmpty(password)) dataBlockContent.Password_Block.Visibility = Visibility.Collapsed;
+            else dataBlockContent.Password_Block.Visibility = Visibility.Visible;
+
+            if (string.IsNullOrEmpty(additional)) dataBlockContent.Additional_Block.Visibility = Visibility.Collapsed;
+            else dataBlockContent.Additional_Block.Visibility = Visibility.Visible;
 
             // I understand that the code can be written easier, but I'm too lazy.
         }
@@ -90,7 +98,7 @@ namespace PasswordManager.Components
             }
             else
             {
-                textBox.BorderBrush = null;
+                textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#757575")); ;
                 return true;
             }
         }

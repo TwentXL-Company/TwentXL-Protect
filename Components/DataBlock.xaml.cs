@@ -14,26 +14,22 @@ namespace PasswordManager.Components
             InitializeComponent();
 
             this.Title_Content.Content = title;
-            this.Login_Content.Text = login;
+            this.Login_Content.Content = login;
             this.Password_Content.Text = password;
             this.Additional_Content.Text = additional;
 
-            if (string.IsNullOrEmpty(title)) Title_Content.Visibility = Visibility.Collapsed;
-            if (string.IsNullOrEmpty(login)) Login_Block.Visibility = Visibility.Collapsed;
-            if (string.IsNullOrEmpty(password)) Password_Block.Visibility = Visibility.Collapsed;
-            if (string.IsNullOrEmpty(additional)) Additional_Block.Visibility = Visibility.Collapsed;
+            this.InitialsTitle.Text = title.Substring(0, 2);
         }
 
-        private void Actions_Click(object sender, RoutedEventArgs e)
+        private void DataBlock_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            button.ContextMenu.PlacementTarget = button;
-            button.ContextMenu.IsOpen = true;
+            DataBlockContent dataBlockContent = new DataBlockContent(this.Title_Content.Content.ToString(), this.Login_Content.Content.ToString(), this.Password_Content.Text, this.Additional_Content.Text);
+            AddDataBlockContent(dataBlockContent);
         }
 
         private void EditBlock_Click(object sender, RoutedEventArgs e)
         {
-            Modal_EditData modal_editData = new Modal_EditData(this, Title_Content.Content.ToString(), Login_Content.Text, Password_Content.Text, Additional_Content.Text);
+            Modal_EditData modal_editData = new Modal_EditData(this, this.Title_Content.Content.ToString(), this.Login_Content.Content.ToString(), this.Password_Content.Text, this.Additional_Content.Text);
             ModalService.ShowModal(modal_editData);
         }
 
@@ -43,28 +39,10 @@ namespace PasswordManager.Components
             ModalService.ShowModal(deleteDialog);
         }
 
-        private void CopyText_Click(object sender, RoutedEventArgs e)
+        private void AddDataBlockContent(DataBlockContent dataBlockContent)
         {
-            Button button = sender as Button;
-            byte number = Byte.Parse(button?.Tag.ToString());
-            switch(number)
-            {
-                case 1:
-                    Clipboard.SetText(Login_Content.Text);
-                    ToastService.Show("Copied", Colors.Green);
-                    break;
-                case 2:
-                    Clipboard.SetText(Password_Content.Text);
-                    ToastService.Show("Copied", Colors.Green);
-                    break;
-                case 3:
-                    Clipboard.SetText(Additional_Content.Text);
-                    ToastService.Show("Copied", Colors.Green);
-                    break;
-                default:
-                    ToastService.Show("Copy error", Colors.Red);
-                    break;
-            }
+            MainPage.MainPageInstance?.DataBlockContentPanel.Children.Clear();
+            MainPage.MainPageInstance?.DataBlockContentPanel.Children.Add(dataBlockContent);
         }
     }
 }

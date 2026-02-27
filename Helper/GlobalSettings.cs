@@ -89,7 +89,7 @@ namespace PasswordManager.Helper
                 {
                     if (item is DataBlock dataBlock)
                     {
-                        passwordList.Add(new PasswordModel { Title = dataBlock.Title_Content.Content.ToString(), Login = dataBlock.Login_Content.Text, Password = dataBlock.Password_Content.Text, Additional = dataBlock.Additional_Content.Text });
+                        passwordList.Add(new PasswordModel { Title = dataBlock.Title_Content.Content.ToString(), Login = dataBlock.Login_Content.Content.ToString(), Password = dataBlock.Password_Content.Text, Additional = dataBlock.Additional_Content.Text });
                     }
                 }
 

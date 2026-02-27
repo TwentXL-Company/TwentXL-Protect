@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace PasswordManager.Components
 {
-    /// <summary>
-    /// Логика взаимодействия для Toast.xaml
-    /// </summary>
     public partial class Toast : UserControl
     {
         public Toast()

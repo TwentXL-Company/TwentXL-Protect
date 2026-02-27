@@ -5,109 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" 
              xmlns:local="clr-namespace:PasswordManager.Components"
-             mc:Ignorable="d" d:DesignWidth="800" Height="150">
-    <Border Style="{DynamicResource DataBlock_Block}">
+             mc:Ignorable="d" d:DesignWidth="800" Height="70" Cursor="">
+    <Button Style="{DynamicResource DataBlock_Block}" Click="DataBlock_Click">
+        <Button.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Edit" Click="EditBlock_Click">
+                    <MenuItem.Icon>
+                        <svgc:SvgViewbox Source="/Assets/Images/penIcon.svg" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Delete" Click="DeleteBlock_Click">
+                    <MenuItem.Icon>
+                        <svgc:SvgViewbox Source="/Assets/Images/trashIcon.svg" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </ContextMenu>
+        </Button.ContextMenu>
+
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition MaxWidth="100" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
-                <Label x:Name="Title_Content" Content="Undefined" Style="{DynamicResource H1}" />
-                <StackPanel x:Name="Login_Block" Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{DynamicResource Button_Link}" Width="15" Click="CopyText_Click" ToolTip="Copy" Tag="1">
-                        <svgc:SvgViewbox Source="/Assets/Images/copyIcon.svg" />
-                    </Button>
-                    <Label Style="{DynamicResource SecondColor_Label}">login:</Label>
-                    <TextBox x:Name="Login_Content" Text="Undefined" Style="{DynamicResource DataBlock_Text}"/>
-                </StackPanel>
-                <StackPanel x:Name="Password_Block" Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{DynamicResource Button_Link}" Width="15" Click="CopyText_Click" ToolTip="Copy" Tag="2">
-                        <svgc:SvgViewbox Source="/Assets/Images/copyIcon.svg" />
-                    </Button>
-                    <Label Style="{DynamicResource SecondColor_Label}">password: </Label>
-                    <TextBox x:Name="Password_Content" Text="Undefined" Style="{DynamicResource DataBlock_Text}" />
-                </StackPanel>
-                <StackPanel x:Name="Additional_Block" Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{DynamicResource Button_Link}" Width="15" Click="CopyText_Click" ToolTip="Copy" Tag="3">
-                        <svgc:SvgViewbox Source="/Assets/Images/copyIcon.svg" />
-                    </Button>
-                    <Label Style="{DynamicResource SecondColor_Label}">additional:</Label>
-                    <TextBox x:Name="Additional_Content" Text="Undefined" Style="{DynamicResource DataBlock_Text}" />
-                </StackPanel>
-            </StackPanel>
+            <Border Background="{DynamicResource MainColor}" BorderThickness="3" CornerRadius="6" SnapsToDevicePixels="True">
+                <TextBlock x:Name="InitialsTitle" Text="Un" Foreground="White" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
 
-            <Button Grid.Column="1" Cursor="Hand" Height="20" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Actions_Click">
-                <Button.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Edit" Click="EditBlock_Click">
-                            <MenuItem.Icon>
-                                <svgc:SvgViewbox Source="/Assets/Images/penIcon.svg" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Delete" Click="DeleteBlock_Click">
-                            <MenuItem.Icon>
-                                <svgc:SvgViewbox Source="/Assets/Images/trashIcon.svg" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                    </ContextMenu>
-                </Button.ContextMenu>
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="Transparent" />
-                        <Setter Property="BorderBrush" Value="Transparent" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal">
-                    <Ellipse Width="10" Height="10" Fill="#A0A5C0" Margin="0,0,5,0" IsHitTestVisible="True">
-                        <Ellipse.Style>
-                            <Style TargetType="Ellipse">
-                                <Setter Property="Fill" Value="#A0A5C0" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Fill" Value="#1E2033" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Ellipse.Style>
-                    </Ellipse>
-                    <Ellipse Width="10" Height="10" Fill="#A0A5C0" Margin="0,0,5,0" IsHitTestVisible="True">
-                        <Ellipse.Style>
-                            <Style TargetType="Ellipse">
-                                <Setter Property="Fill" Value="#A0A5C0" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Fill" Value="#1E2033" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Ellipse.Style>
-                    </Ellipse>
-                    <Ellipse Width="10" Height="10" Fill="#A0A5C0" IsHitTestVisible="True">
-                        <Ellipse.Style>
-                            <Style TargetType="Ellipse">
-                                <Setter Property="Fill" Value="#A0A5C0" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Fill" Value="#1E2033" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Ellipse.Style>
-                    </Ellipse>
-                </StackPanel>
-            </Button>
+                <Label Grid.Row="0" x:Name="Title_Content" Content="Undefined" Style="{DynamicResource H1}" />
+                <Label Grid.Row="1" x:Name="Login_Content" Content="Undefined" />
+
+                <!--Hidding-->
+                <TextBox x:Name="Password_Content" Text="Undefined" Style="{DynamicResource DataBlock_Text}" Visibility="Hidden" />
+                <TextBox x:Name="Additional_Content" Text="Undefined" Style="{DynamicResource DataBlock_Text}" Visibility="Hidden" />
+            </Grid>
         </Grid>
-    </Border>
+    </Button>
 </UserControl>

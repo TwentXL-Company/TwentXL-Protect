@@ -33,25 +33,26 @@ namespace PasswordManager
         private void MainPageShow()
         {
             MainPage mainPage = new MainPage();
-            AddPage(mainPage);
+            AddPage(mainPage, "Home");
         }
 
         private void SettingsPageShow()
         {
             SettingsPage settingsPage = new SettingsPage();
-            AddPage(settingsPage);
+            AddPage(settingsPage, "Settings");
         }
 
         private void FAQPageShow()
         {
             FAQPage faqpage = new FAQPage();
-            AddPage(faqpage);
+            AddPage(faqpage, "FAQ");
         }
 
-        private void AddPage(UIElement element)
+        private void AddPage(UIElement element, string pageName)
         {
             MainControl.Children.Clear();
             MainControl.Children.Add(element);
+            PageName.Content = pageName;
         }
 
         private void Titlebar_MouseDown(object sender, MouseButtonEventArgs e)

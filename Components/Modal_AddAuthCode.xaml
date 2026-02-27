@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Style="{DynamicResource Button}" Margin="0,0,20,0" Click="Add_Click">Add</Button>
+            <Button Grid.Column="0" Margin="0,0,20,0" Click="Add_Click">Add</Button>
             <Button Grid.Column="1" Style="{DynamicResource ButtonDanger}" Click="Cancel_Click">Cancel</Button>
         </Grid>
     </Grid>
