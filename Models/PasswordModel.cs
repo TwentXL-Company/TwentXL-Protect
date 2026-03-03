@@ -12,5 +12,6 @@ namespace PasswordManager.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string Additional { get; set; }
+        public string CreatedDate { get; set; }
     }
 }

@@ -51,7 +51,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="70" />
+                        <RowDefinition Height="30" />
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -60,10 +60,10 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Button Style="{DynamicResource Button_Header}" Click="Home_Click">Home</Button>
-                        <Button Style="{DynamicResource Button_Header}" Click="Settings_Click">Settings</Button>
-                        <Button Style="{DynamicResource Button_Header}" Click="FAQ_Click">FAQ</Button>
-                        <Button Style="{DynamicResource Button_Header}" Click="BackupAction_Click">
+                        <Button Style="{DynamicResource Button_Header}" Click="Home_Click" Tag="Assets/Images/homeIcon.svg">Home</Button>
+                        <Button Style="{DynamicResource Button_Header}" Click="Settings_Click" Tag="Assets/Images/settingsIcon.svg">Settings</Button>
+                        <Button Style="{DynamicResource Button_Header}" Click="FAQ_Click" Tag="Assets/Images/faqIcon.svg">FAQ</Button>
+                        <Button Style="{DynamicResource Button_Header}" Click="BackupAction_Click" Tag="Assets/Images/backupIcon.svg">
                             <Button.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Create backup" Click="CreateBackup_Click"/>
@@ -74,7 +74,6 @@
                         </Button>
                     </StackPanel>
                 </Grid>
-
                 <Grid Grid.Column="1" x:Name="MainControl" />
 
                 <comp:Toast x:Name="MyToast" Grid.Column="1" Panel.ZIndex="99" />

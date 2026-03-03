@@ -9,7 +9,7 @@ namespace PasswordManager.Components
 {
     public partial class DataBlock : UserControl
     {
-        public DataBlock(string title, string login, string password, string additional)
+        public DataBlock(string title, string login, string password, string additional, string createdDate)
         {
             InitializeComponent();
 
@@ -17,13 +17,14 @@ namespace PasswordManager.Components
             this.Login_Content.Content = login;
             this.Password_Content.Text = password;
             this.Additional_Content.Text = additional;
+            this.CreatedDate_Content.Text = createdDate;
 
             this.InitialsTitle.Text = title.Substring(0, 2);
         }
 
         private void DataBlock_Click(object sender, RoutedEventArgs e)
         {
-            DataBlockContent dataBlockContent = new DataBlockContent(this.Title_Content.Content.ToString(), this.Login_Content.Content.ToString(), this.Password_Content.Text, this.Additional_Content.Text);
+            DataBlockContent dataBlockContent = new DataBlockContent(this.Title_Content.Content.ToString(), this.Login_Content.Content.ToString(), this.Password_Content.Text, this.Additional_Content.Text, this.CreatedDate_Content.Text);
             AddDataBlockContent(dataBlockContent);
         }
 

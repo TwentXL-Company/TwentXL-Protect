@@ -32,10 +32,11 @@ namespace PasswordManager.Components
             {
                 if (FieldValidation(Title) == false || FieldValidation(Password) == false || FieldValidation(Login) == false) return;
 
-                DataBlock dataBlock = new DataBlock(Title.Text, Login.Text, Password.Text, Additional.Text);
+                DateTime createdDate = DateTime.Now;
+                DataBlock dataBlock = new DataBlock(Title.Text, Login.Text, Password.Text, Additional.Text, createdDate.ToString());
                 MainPage.MainPageInstance?.DataBlockStackPanel.Children.Add(dataBlock);
                 ModalService.HideModal();
-                ToastService.Show("Succcess", Colors.Green);
+                ToastService.Show("Password data was added", Colors.Green);
             }
             catch (Exception ex)
             {

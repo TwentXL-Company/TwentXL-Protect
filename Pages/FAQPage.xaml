@@ -6,13 +6,18 @@
              xmlns:local="clr-namespace:PasswordManager.Pages" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Margin="20" >
         <StackPanel Orientation="Vertical" Margin="0,0,0,20">
             <StackPanel Orientation="Horizontal">
                 <Label>Product by</Label>
                 <svgc:SvgViewbox Source="/Assets/Images/logo.svg" Width="60" VerticalAlignment="Center" />
             </StackPanel>
-            <Label>(C) 2025 TwentXL. All rights reserved.</Label>
+            <StackPanel Orientation="Horizontal">
+                <Label Padding="0,5,0,5">(C)TwentXL 2026-</Label>
+                <Label x:Name="YearNow" Padding="0,5,0,5">YearNow</Label>
+                <Label>All rights reserved.</Label>
+            </StackPanel>
+            <!--<Label>(C) 2026  All rights reserved.</Label>-->
         </StackPanel>
 
         <Label Style="{DynamicResource H1}" Margin="0,0,0,20">Packages license:</Label>

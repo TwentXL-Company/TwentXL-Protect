@@ -20,7 +20,7 @@ namespace PasswordManager.Components
     {
         public static DataBlockContent? Instance;
 
-        public DataBlockContent(string title, string login, string password, string additional)
+        public DataBlockContent(string title, string login, string password, string additional, string createdDate)
         {
             InitializeComponent();
             Instance = this;
@@ -29,6 +29,7 @@ namespace PasswordManager.Components
             this.Login_Content.Text = login;
             this.Password_Content.Text = password;
             this.Additional_Content.Text = additional;
+            this.CreatedDate_Content.Content = createdDate;
             this.InitialsTitle.Text = title.Substring(0, 2);
 
             if (string.IsNullOrEmpty(title)) Title_Content.Visibility = Visibility.Collapsed;

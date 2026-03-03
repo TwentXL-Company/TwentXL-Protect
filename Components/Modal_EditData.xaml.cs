@@ -47,7 +47,7 @@ namespace PasswordManager.Components
                 FillAndCheckValue(title, login, password, additional);
 
                 ModalService.HideModal();
-                ToastService.Show("Block was edited", Colors.Green);
+                ToastService.Show("Password data was edited", Colors.Green);
             }
             catch (Exception ex)
             {
@@ -70,20 +70,24 @@ namespace PasswordManager.Components
                 x.Additional_Content.Text = additional;
             }
 
-            Fill(dataBlockContent, (x, v) => x.Login_Content.Text = v);
             Fill(dataBlock, (x, v) => x.Login_Content.Content = v);
 
-            if (string.IsNullOrEmpty(title)) dataBlockContent.Title_Content.Visibility = Visibility.Collapsed;
-            else dataBlockContent.Title_Content.Visibility = Visibility.Visible;
+            if(dataBlockContent != null)
+            {
+                Fill(dataBlockContent, (x, v) => x.Login_Content.Text = v);
 
-            if (string.IsNullOrEmpty(login)) dataBlockContent.Login_Block.Visibility = Visibility.Collapsed;
-            else dataBlockContent.Login_Block.Visibility = Visibility.Visible;
+                if (string.IsNullOrEmpty(title)) dataBlockContent.Title_Content.Visibility = Visibility.Collapsed;
+                else dataBlockContent.Title_Content.Visibility = Visibility.Visible;
 
-            if (string.IsNullOrEmpty(password)) dataBlockContent.Password_Block.Visibility = Visibility.Collapsed;
-            else dataBlockContent.Password_Block.Visibility = Visibility.Visible;
+                if (string.IsNullOrEmpty(login)) dataBlockContent.Login_Block.Visibility = Visibility.Collapsed;
+                else dataBlockContent.Login_Block.Visibility = Visibility.Visible;
 
-            if (string.IsNullOrEmpty(additional)) dataBlockContent.Additional_Block.Visibility = Visibility.Collapsed;
-            else dataBlockContent.Additional_Block.Visibility = Visibility.Visible;
+                if (string.IsNullOrEmpty(password)) dataBlockContent.Password_Block.Visibility = Visibility.Collapsed;
+                else dataBlockContent.Password_Block.Visibility = Visibility.Visible;
+
+                if (string.IsNullOrEmpty(additional)) dataBlockContent.Additional_Block.Visibility = Visibility.Collapsed;
+                else dataBlockContent.Additional_Block.Visibility = Visibility.Visible;
+            }
 
             // I understand that the code can be written easier, but I'm too lazy.
         }

@@ -80,7 +80,7 @@
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
             <Label Content="Created: " />
-            <Label x:Name="Created_Content" Content="26.12.2002" />
+            <Label x:Name="CreatedDate_Content" Content="26.12.2002" />
         </StackPanel>
     </Grid>
 </UserControl>

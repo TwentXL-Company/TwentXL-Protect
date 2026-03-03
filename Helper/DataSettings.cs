@@ -47,7 +47,7 @@ namespace PasswordManager.Helper
 
                     foreach (var item in passwordList)
                     {
-                        DataBlock dataBlock = new DataBlock(item.Title, item.Login, item.Password, item.Additional);
+                        DataBlock dataBlock = new DataBlock(item.Title, item.Login, item.Password, item.Additional, item.CreatedDate);
                         MainPage.MainPageInstance?.DataBlockStackPanel.Children.Add(dataBlock);
                     }
                 }
@@ -70,7 +70,13 @@ namespace PasswordManager.Helper
                 {
                     if (item is DataBlock dataBlock)
                     {
-                        passwordList.Add(new PasswordModel { Title = dataBlock.Title_Content.Content.ToString(), Login = dataBlock.Login_Content.Content.ToString(), Password = dataBlock.Password_Content.Text, Additional = dataBlock.Additional_Content.Text });
+                        passwordList.Add(new PasswordModel { 
+                            Title = dataBlock.Title_Content.Content.ToString(), 
+                            Login = dataBlock.Login_Content.Content.ToString(), 
+                            Password = dataBlock.Password_Content.Text, 
+                            Additional = dataBlock.Additional_Content.Text, 
+                            CreatedDate = dataBlock.CreatedDate_Content.Text 
+                        });
                     }
                 }
 

@@ -47,28 +47,37 @@ namespace PasswordManager.Pages
         {
             try
             {
-                string query = SearchBox.Text?.Trim();
+                var query = SearchBox.Text?.Trim();
 
-                if(string.IsNullOrEmpty(query))
+                if (string.IsNullOrEmpty(query))
                 {
-                    ToastService.Show("This field is empty", Colors.Orange);
+                    SearchButton.Visibility = Visibility.Visible;
+                    SearchCancelButton.Visibility = Visibility.Collapsed;
+
+                    foreach (var child in DataBlockStackPanel.Children)
+                    {
+                        if (child is DataBlock dataBlock)
+                        {
+                            dataBlock.Visibility = Visibility.Visible;
+                        }
+                    }
+
                     return;
                 }
+
+                SearchButton.Visibility = Visibility.Collapsed;
+                SearchCancelButton.Visibility = Visibility.Visible;
 
                 foreach (var child in DataBlockStackPanel.Children)
                 {
                     if (child is DataBlock dataBlock)
                     {
-                        var titleLabel = FindChild<Label>(dataBlock, "Title_Content");
-                        if (titleLabel?.Content?.ToString() != query)
-                        {
-                            dataBlock.Visibility = Visibility.Collapsed;
-                        }
+                        var text = dataBlock.Title_Content.Content.ToString() ?? string.Empty;
+                        bool isMatch = text.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                        dataBlock.Visibility = isMatch ? Visibility.Visible : Visibility.Collapsed;
                     }
                 }
-
-                SearchButton.Visibility = Visibility.Collapsed;
-                SearchCancelButton.Visibility = Visibility.Visible;
             }
             catch(Exception ex)
             {

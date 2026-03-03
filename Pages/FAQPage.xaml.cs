@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace PasswordManager.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для FAQPage.xaml
-    /// </summary>
     public partial class FAQPage : UserControl
     {
         public FAQPage()
         {
             InitializeComponent();
+
+            DateTime dateNow = DateTime.Now;
+            this.YearNow.Content = dateNow.Year;
         }
     }
 }

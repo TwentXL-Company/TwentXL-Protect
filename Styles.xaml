@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" 
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <SolidColorBrush x:Key="WindowBackground" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="MainColor" Color="#141625" />
@@ -11,7 +12,6 @@
     <SolidColorBrush x:Key="GrayColor" Color="#EBECF3" />
     <SolidColorBrush x:Key="TextBoxPlaceholder" Color="#757575" />
     <SolidColorBrush x:Key="DataBlockHover" Color="#6F7FF1" />
-    <SolidColorBrush x:Key="MenuShadowColor" Color="#80B3B3B3" />
     <sys:Double x:Key="FontSize">14</sys:Double>
 
     <Style x:Key="Logo" TargetType="Image">
@@ -51,9 +51,9 @@
     <Style x:Key="Toast" TargetType="Border">
         <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Background" Value="#F4F4F4" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Margin" Value="0,0,10,10" />
         <Setter Property="Padding" Value="5" />
     </Style>
 
@@ -67,21 +67,37 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuItem">
-                    <Border x:Name="MenuItemBorder"
-                                Background="Transparent"
-                                Padding="16,8"
-                                CornerRadius="8">
-                        <ContentPresenter ContentSource="Header"
-                                              RecognizesAccessKey="True"
-                                              TextBlock.Foreground="#1C1C1C"
-                                              VerticalAlignment="Center"/>
+                    <Border x:Name="MenuItemBorder" Background="Transparent" Padding="16,8" CornerRadius="8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Grid.Column="0"
+                                  ContentSource="Icon"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"/>
+                            <ContentPresenter Grid.Column="2"
+                                  ContentSource="Header"
+                                  RecognizesAccessKey="True"
+                                  VerticalAlignment="Center">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="#F9FAFB"/>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Grid>
                     </Border>
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="MenuItemBorder" Property="Background" Value="#D6D6D6"/>
+                            <Setter TargetName="MenuItemBorder"
+                        Property="Background" Value="#374151"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="#808080"/>
+                            <Setter Property="Foreground" Value="#6B7280"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -89,8 +105,9 @@
         </Setter>
     </Style>
     <Style TargetType="ContextMenu">
-        <Setter Property="Background" Value="#F3F3F3"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="#111827"/>
+        <Setter Property="BorderBrush" Value="#6B728E"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="4"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -98,12 +115,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ContextMenu">
                     <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="12"
-                                Padding="{TemplateBinding Padding}">
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="12"
+                        Padding="{TemplateBinding Padding}">
                         <StackPanel IsItemsHost="True"
-                                        KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                                KeyboardNavigation.DirectionalNavigation="Cycle"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -176,15 +193,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border 
+                    <Border
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     Padding="{TemplateBinding Padding}">
-                        <ContentPresenter 
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                        RecognizesAccessKey="True" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <svgc:SvgViewbox Width="15"
+                                         Margin="0,0,10,0"
+                                         VerticalAlignment="Center"
+                                         Source="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                        </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">

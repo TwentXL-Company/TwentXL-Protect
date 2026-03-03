@@ -49,6 +49,7 @@ namespace PasswordManager.Components
 
             ModalService.HideModal();
             ToastService.Show("Authentication code was added", Colors.Green);
+            GlobalSettings.SaveSettings();
             GlobalSettings.LoadSettings();
             SettingsPage.SettingsPageInstance?.UpdateSettings();
         }

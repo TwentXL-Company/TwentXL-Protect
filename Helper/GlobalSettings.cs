@@ -76,6 +76,8 @@ namespace PasswordManager.Helper
                 app.Resources.MergedDictionaries.Remove(oldTheme);
 
             app.Resources.MergedDictionaries.Add(dict);
+
+            SaveSettings();
         }
 
         public static void CreateBackup()

@@ -11,12 +11,12 @@
             <ContextMenu>
                 <MenuItem Header="Edit" Click="EditBlock_Click">
                     <MenuItem.Icon>
-                        <svgc:SvgViewbox Source="/Assets/Images/penIcon.svg" />
+                        <svgc:SvgViewbox Source="Assets/Images/penIcon.svg" Width="10"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Delete" Click="DeleteBlock_Click">
                     <MenuItem.Icon>
-                        <svgc:SvgViewbox Source="/Assets/Images/trashIcon.svg" />
+                        <svgc:SvgViewbox Source="Assets/Images/trashIcon.svg" Width="10" />
                     </MenuItem.Icon>
                 </MenuItem>
             </ContextMenu>
@@ -34,7 +34,7 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="35" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
@@ -44,6 +44,7 @@
                 <!--Hidding-->
                 <TextBox x:Name="Password_Content" Text="Undefined" Style="{DynamicResource DataBlock_Text}" Visibility="Hidden" />
                 <TextBox x:Name="Additional_Content" Text="Undefined" Style="{DynamicResource DataBlock_Text}" Visibility="Hidden" />
+                <TextBox x:Name="CreatedDate_Content" Text="01.01.1979" Style="{DynamicResource DataBlock_Text}" Visibility="Hidden" />
             </Grid>
         </Grid>
     </Button>
