@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordManager"
         xmlns:comp ="clr-namespace:PasswordManager.Components"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" 
         mc:Ignorable="d"
         Background="{DynamicResource WindowBackground}"
         WindowStyle="None"
         MinWidth="800"
         MinHeight="550"
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/Images/logo_protect_light.png"
+        Icon="/Assets/Images/logo_protect_icon.png"
         Title="TwentXL Protect" Height="650" Width="950">
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0"
@@ -55,8 +56,7 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Style="{DynamicResource Logo}"/>
-                        <Label Foreground="#FFFFFF" FontSize="20">Protect</Label>
+                        <svgc:SvgViewbox Source="Assets/Images/logo_protect.svg" Width="120" />
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">

@@ -13,12 +13,7 @@
     <SolidColorBrush x:Key="TextBoxPlaceholder" Color="#757575" />
     <SolidColorBrush x:Key="DataBlockHover" Color="#6F7FF1" />
     <sys:Double x:Key="FontSize">14</sys:Double>
-
-    <Style x:Key="Logo" TargetType="Image">
-        <Setter Property="Source" Value="/Assets/Images/logo_protect_light.png" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Width" Value="30" />
-    </Style>
+    
     <Style x:Key="Title_Close" TargetType="Image">
         <Setter Property="Source" Value="/Assets/Images/closeIcon.png" />
     </Style>
