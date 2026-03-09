@@ -46,6 +46,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="12"/>
                 </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" x:Name="EmptyPasswords_Message" Content="You don't have any passwords" HorizontalAlignment="Center" Margin="10" />
                 <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
                     <StackPanel x:Name="DataBlockStackPanel" Orientation="Vertical">
                     </StackPanel>
@@ -55,6 +57,7 @@
             </Grid>
 
             <Grid Grid.Column="1" x:Name="DataBlockContentPanel" MaxWidth="650" />
+            <Label Grid.Column="1" x:Name="SelectPassword_Message" Content="Select to view the information" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
     </Grid>
 </UserControl>

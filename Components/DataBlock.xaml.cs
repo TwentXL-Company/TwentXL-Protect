@@ -44,6 +44,8 @@ namespace PasswordManager.Components
         {
             MainPage.MainPageInstance?.DataBlockContentPanel.Children.Clear();
             MainPage.MainPageInstance?.DataBlockContentPanel.Children.Add(dataBlockContent);
+
+            MainPage.MainPageInstance.SelectPassword_Message.Visibility = Visibility.Hidden;
         }
     }
 }

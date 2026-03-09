@@ -50,6 +50,8 @@ namespace PasswordManager.Helper
                         DataBlock dataBlock = new DataBlock(item.Title, item.Login, item.Password, item.Additional, item.CreatedDate);
                         MainPage.MainPageInstance?.DataBlockStackPanel.Children.Add(dataBlock);
                     }
+
+                    Utils.PasswordsListCheck();
                 }
             }
             catch(Exception ex)

@@ -1,8 +1,10 @@
-﻿using PasswordManager.Services;
+﻿using PasswordManager.Pages;
+using PasswordManager.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace PasswordManager.Helper
@@ -48,6 +50,14 @@ namespace PasswordManager.Helper
             bool? result = dialog.ShowDialog();
             if (result == true) return dialog.FileName;
             else return null;
+        }
+
+        public static void PasswordsListCheck()
+        {
+            if (MainPage.MainPageInstance?.DataBlockStackPanel.Children.Count > 0)
+                MainPage.MainPageInstance.EmptyPasswords_Message.Visibility = Visibility.Hidden;
+            else
+                MainPage.MainPageInstance.EmptyPasswords_Message.Visibility = Visibility.Visible;
         }
     }
 }
