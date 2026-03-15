@@ -91,7 +91,7 @@ namespace PasswordManager.Helper
                 {
                     if (item is DataBlock dataBlock)
                     {
-                        passwordList.Add(new PasswordModel { Title = dataBlock.Title_Content.Content.ToString(), Login = dataBlock.Login_Content.Content.ToString(), Password = dataBlock.Password_Content.Text, Additional = dataBlock.Additional_Content.Text });
+                        passwordList.Add(new PasswordModel { Title = dataBlock.Title_Content.Content.ToString(), Login = dataBlock.Login_Content.Content.ToString(), Password = dataBlock.Password_Content.Text, Additional = dataBlock.Additional_Content.Text, CreatedDate = dataBlock.CreatedDate_Content.Text });
                     }
                 }
 
@@ -167,7 +167,7 @@ namespace PasswordManager.Helper
                         foundFields.Add(prop.Name);
                     }
 
-                    if (foundFields.Count != 4 || !foundFields.SetEquals(new[] { "Title", "Login", "Password", "Additional" }))
+                    if (foundFields.Count != 5 || !foundFields.SetEquals(new[] { "Title", "Login", "Password", "Additional", "CreatedDate" }))
                         return false;
                 }
 
