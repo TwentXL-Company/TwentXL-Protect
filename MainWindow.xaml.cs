@@ -16,6 +16,10 @@ namespace PasswordManager
     {
         public static MainWindow Instance { get; private set; }
 
+        private readonly MainPage mainPage = new MainPage();
+        private readonly SettingsPage settingsPage = new SettingsPage();
+        private readonly FAQPage faqpage = new FAQPage();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,23 +32,21 @@ namespace PasswordManager
         {
             DataSettings.SaveJson();
             GlobalSettings.SaveSettings();
+            base.OnClosed(e);
         }
 
         private void MainPageShow()
         {
-            MainPage mainPage = new MainPage();
             AddPage(mainPage, "Home");
         }
 
         private void SettingsPageShow()
         {
-            SettingsPage settingsPage = new SettingsPage();
             AddPage(settingsPage, "Settings");
         }
 
         private void FAQPageShow()
         {
-            FAQPage faqpage = new FAQPage();
             AddPage(faqpage, "FAQ");
         }
 

@@ -6,16 +6,22 @@ namespace PasswordManager.Services
 {
     class ModalService
     {
+        private static ModalDialog currentModal;
+
         public static void ShowModal(UIElement element)
         {
-            ModalDialog modalDialog = new ModalDialog(element);
-            MainWindow.Instance?.ModalDialog_Area.Children.Add(modalDialog);
+            currentModal = new ModalDialog(element);
+            MainWindow.Instance?.ModalDialog_Area.Children.Add(currentModal);
         }
 
         public static void HideModal()
         {
-            ModalDialog.Instance?.ModalContent.Children.Clear();
-            MainWindow.Instance?.ModalDialog_Area.Children.Clear();
+            if (currentModal != null)
+            {
+                currentModal.ModalContent.Children.Clear();
+                MainWindow.Instance?.ModalDialog_Area.Children.Remove(currentModal);
+                currentModal = null;
+            }
         }
     }
 }
