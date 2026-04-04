@@ -11,7 +11,7 @@
     <SolidColorBrush x:Key="TextColorAdditional" Color="#9CA3AF" />
     <SolidColorBrush x:Key="GrayColor" Color="#272B3A" />
     <SolidColorBrush x:Key="TextBoxPlaceholder" Color="#6B7280" />
-    <SolidColorBrush x:Key="DataBlockHover" Color="#4F46E5" />
+    <SolidColorBrush x:Key="DataBlockHover" Color="#333333" />
     <sys:Double x:Key="FontSize">14</sys:Double>
     
     <Style x:Key="Title_Close" TargetType="Image">
